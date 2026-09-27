@@ -1,20 +1,20 @@
 # Lab 2: Hands-On Git and Version Control
 
 **Estimated duration:** 3 hours  
-**Submission repository:** `CC`  
+**Submission repository:** `DevOps`  
 **Submission directory:** `Labs/Lab02`  
 **Screenshot directory:** `Labs/Lab02/screenshots`
 
-Complete the practical work in the repository required by each task. Submit all evidence to your GitHub repository named exactly `CC` using the directory structure shown below.
+Complete the practical work in the repository required by each task. Submit all evidence to your GitHub repository named exactly `DevOps` using the directory structure shown below.
 
 ```text
-CC/
+DevOps/
 └── Labs/
     └── Lab02/
         ├── README.md
         ├── notes.txt
         ├── main.py
-        ├── REVIEW_NOTES.md
+        ├── Lab2_Solution.pdf
         └── screenshots/
             ├── git_installation.png
             ├── repo_private.png
@@ -81,11 +81,11 @@ Read these rules before starting. The automated grader awards marks separately f
 
 9. Do not expose passwords, private SSH keys, access tokens, recovery codes, or other secrets. It is acceptable to show a public-key entry or fingerprint without revealing private key contents.
 
-10. Commit and push the complete `Labs/Lab02` directory to `CC` before the deadline. Files remaining only on your computer cannot be graded.
+10. Commit and push the complete `Labs/Lab02` directory to `DevOps` before the deadline. Files remaining only on your computer cannot be graded.
 
 ### Required Automated-Grading Filenames
 
-The current Lab 2 grader checks these 41 files:
+The current Lab 2 grader checks these 37 files:
 
 ```text
 git_installation.png
@@ -117,7 +117,6 @@ branch_merges.png
 final_merge.png
 pr_create_details.png
 pr_assigned_reviewer.png
-pr_approved.png
 pr_request_changes.png
 pr_rejected.png
 pr_updated_with_commits.png
@@ -126,12 +125,9 @@ pr_merged.png
 pr_branch_deleted.png
 remote_branch_deleted.png
 remote_branch_delete_cmd.png
-Q1_branch_created.png
-Q1_commit_done.png
-Q1_merge_done.png
 ```
 
-Each of these 41 checks has equal weight. Bonus and additional exam-practice screenshots may be reviewed separately and are not included in these 41 automated checks.
+Each of these 37 checks has equal weight. Bonus and additional exam-practice screenshots may be reviewed separately and are not included in these 37 automated checks.
 
 ---
 
@@ -145,7 +141,7 @@ Each of these 41 checks has equal weight. Bonus and additional exam-practice scr
 
 ## Task 1: Create Private GitHub Repository
 
-1. **Create a new private repository named exactly `CC` on GitHub.**
+1. **Create a new private repository named exactly `DevOps_Lab2_Practice` on GitHub.**
 2. Take a split-screen screenshot showing the repository is private and your required terminal prompt. Save it as `Labs/Lab02/screenshots/repo_private.png`.
 
 ---
@@ -155,13 +151,14 @@ Each of these 41 checks has equal weight. Bonus and additional exam-practice scr
 1. **Generate a new SSH key using PowerShell:**
    ```powershell
    ssh-keygen -t ed25519 -C "your_email@example.com"
+   cat ~/.ssh/id_ed25519.pub
    ```
    - Save it as `Labs/Lab02/screenshots/ssh_keygen.png`. Do not show the private key contents.
 2. **Add your SSH public key to GitHub (Settings > SSH and GPG keys).**
    - Save a split-screen screenshot as `Labs/Lab02/screenshots/github_sshkey.png`.
-3. **Clone your `CC` repository using SSH.**
+3. **Clone your `DevOps_Lab2_Practice` repository using SSH.**
    ```bash
-   git clone git@github.com:<yourusername>/CC.git
+   git clone git@github.com:<yourusername>/DevOps_Lab2_Practice.git
    ```
    - Save it as `Labs/Lab02/screenshots/ssh_clone.png`.
 
@@ -203,6 +200,7 @@ Each of these 41 checks has equal weight. Bonus and additional exam-practice scr
 1. **Delete the existing `.git` folder from your cloned repo using Git Bash:**
    ```bash
    rm -rf .git
+   git status ==> error why?
    ```
    - Take a screenshot as `delete_git.png`.
 2. **Re-initialize the local git repository:**
@@ -212,14 +210,15 @@ Each of these 41 checks has equal weight. Bonus and additional exam-practice scr
    - Save a screenshot as `git_init.png`.
 3. **Add a file named `README.md` and commit it:**
    ```bash
-   echo "# Lab02 Git Practice" > README.md
+   echo "# Lab02 Git Practice" >> README.md
    git add README.md
    git commit -m "Initial commit"
    ```
    - Save a screenshot as `first_commit.png`.
 4. **Connect your local repo to GitHub and push:**
    ```bash
-   git remote add origin git@github.com:<yourusername>/CC.git
+   git remote add origin git@github.com:<yourusername>/DevOps_Lab2_Practice.git
+   git branch -M main
    git push -u origin main
    ```
    - Save a screenshot as `first_push.png`.
@@ -229,6 +228,9 @@ Each of these 41 checks has equal weight. Bonus and additional exam-practice scr
 ## Task 6: File Status & Staging
 
 1. Create a new file `notes.txt` and write a note.
+   ```bash
+   echo "Adding some test notes" >> notes.txt
+   ```
 2. Check status:
    ```bash
    git status
@@ -283,12 +285,15 @@ Each of these 41 checks has equal weight. Bonus and additional exam-practice scr
    git commit -m "Add new function to main.py"
    ```
    - Screenshot as `feature_commit.png`.
-3. Switch back to `main` and merge:
+3. Switch back to `main` and merge: 
    ```bash
    git checkout main
    git merge feature-1
    ```
    - Screenshot as `merge.png`.
+
+    Merging directly into `main` from your local terminal is **widely considered a risky anti-pattern**, especially on a team. In professional software development, using a **Pull Request (PR)** or **Merge Request (MR)** is the **gold standard**.
+
 4. Push all branches:
    ```bash
    git push origin main
@@ -342,7 +347,6 @@ Each of these 41 checks has equal weight. Bonus and additional exam-practice scr
    - Screenshot as `pr_assigned_reviewer.png`.
 
 3. **Reviewer Actions (capture screenshots for each):**
-   - Approve the PR → `pr_approved.png`
    - Request changes and add comments → `pr_request_changes.png`
    - Reject or close a practice PR → `pr_rejected.png`. Use a separate practice PR if necessary so all required review states can be demonstrated safely.
 
@@ -403,7 +407,7 @@ Each of these 41 checks has equal weight. Bonus and additional exam-practice scr
 
 6. Save the merge evidence as `collab_merge.png`.
 
-The bonus screenshots are not included in the 41 mandatory automated checks.
+The bonus screenshots are not included in the 37 mandatory automated checks.
 
 ---
 
@@ -456,12 +460,12 @@ The three `Q1_*.png` files listed in the mandatory filename section are part of 
 
 Before the deadline, verify the following:
 
-- Your repository is named exactly `CC`.
+- Your repository is named exactly `DevOps`.
 - Your work is stored under `Labs/Lab02`.
 - Every required screenshot is stored under `Labs/Lab02/screenshots`.
 - Screenshot filenames match the required names exactly.
 - Every required screenshot clearly shows your standardized terminal identity, task evidence, and relevant output.
-- `README.md` contains your name, registration number, GitHub username, course, and section.
+- `README.md` this file.
 - No password, private key, token, or secret is visible.
 - All files are committed and pushed to GitHub.
 
