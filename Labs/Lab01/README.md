@@ -34,7 +34,7 @@ The `README.md` file and the instructional images are provided by the instructor
 Your completed Lab 01 directory must follow this structure:
 
 ```text
-CC/
+DevOps/
 └── Labs/
     └── Lab01/
         ├── README.md
@@ -76,7 +76,7 @@ Follow these rules:
 
 ## Getting Started
 
-1. Create the following directory inside your `CC` repository:
+1. Create the following directory inside your `DevOps` repository:
 
    ```text
    Labs/Lab01/screenshots/
